@@ -116,33 +116,4 @@ screen -dmS singbox
 sleep 1
 screen -S singbox -X stuff  "cd ${HOME}/sbconf$(printf '\r')sing-box run -c ${HOME}/sbconf/config.json$(printf '\r')"
 
-mkdir /opt/http-random
-touch /opt/http-random/startup.sh
-
-cat >/opt/http-random/startup.sh<<EOF
-screen -dmS http-random
-sleep 1
-screen -S http-random -X stuff "http-random -b 127.0.0.1:7777 -i ${subIPv6}/${CIDR}$(printf '\r')";
-
-screen -dmS singbox
-sleep 1
-screen -S singbox -X stuff  "cd ${HOME}/sbconf$(printf '\r')sing-box run -c ${HOME}/sbconf/config.json$(printf '\r')"
-EOF
-
-touch /etc/systemd/system/http-random.service
-cat >/etc/systemd/system/http-random.service<<EOF
-[Unit]
-Description=Set up random proxy at startup
-After=default.target
-
-[Service]
-ExecStart=/opt/http-random/startup.sh
-
-[Install]
-WantedBy=default.target
-EOF
-
-systemctl daemon-reload
-systemctl enable http-random
-
 echo "HTTP/SOCKS5混合代理：${localIP}:55431"
