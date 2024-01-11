@@ -16,6 +16,7 @@ echo -n "请输入所分配的IPv6子网："
 read subIPv6
 
 apt update
+apt upgrade
 apt install net-tools screen nano curl git wget -y
 
 systemctl stop systemd-resolved
@@ -54,7 +55,6 @@ bash <(curl -fsSL https://sing-box.app/deb-install.sh)
 ufw disable
 echo -n "安装完成"
 
-​screen -S http-random -X quit​
 screen -dmS http-random
 sleep 1
 screen -S http-random -X stuff "http-random -b 127.0.0.1:7777 -i ${subIPv6}/${CIDR}$(printf '\r')";
@@ -112,7 +112,6 @@ cat >${HOME}/sbconf/config.json<<EOF
 }
 EOF
 
-screen -S singbox -X quit​
 screen -dmS singbox
 sleep 1
 screen -S singbox -X stuff  "cd ${HOME}/sbconf$(printf '\r')sing-box run -c ${HOME}/sbconf/config.json$(printf '\r')"
