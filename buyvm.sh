@@ -17,7 +17,7 @@ read subIPv6
 
 apt update
 apt upgrade
-apt install net-tools screen nano curl git wget -y
+apt install net-tools screen nano curl git wget timelimit -y
 
 systemctl stop systemd-resolved
 systemctl disable systemd-resolved
