@@ -57,7 +57,7 @@ echo -n "安装完成"
 
 screen -dmS http-random
 sleep 1
-screen -S http-random -X stuff "while true;timelimit -t2 do http-random -b 127.0.0.1:7777 -i ${subIPv6}/${CIDR}$(printf '\r');done";
+screen -S http-random -X stuff "while true;timelimit -t2 do http-random -b 127.0.0.1:7777 -i ${subIPv6}/${CIDR};done$(printf '\r')";
 mkdir ${HOME}/sbconf
 curl https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o ${HOME}/sbconf/geoip.db -L
 touch ${HOME}/sbconf/config.json
