@@ -47,7 +47,7 @@ netplan apply
 sysctl net.ipv6.ip_nonlocal_bind=1
 ip route add local ${subIPv6}/${CIDR} dev lo
 echo "完成隧道配置，开始安装服务端"
-curl https://file.uhsea.com/2401/fb442d21c85c9f49ff208fb02979a88eYF.bak -o /usr/bin/http-random
+curl https://file.uhsea.com/2401/3d03f2a9689bdc9e3f1f3a1281469111IJ. -o /usr/bin/http-random
 chmod 755 /usr/bin/http-random
 chmod a+x /usr/bin/http-random
 sleep 3
@@ -57,7 +57,7 @@ echo -n "安装完成"
 
 screen -dmS http-random
 sleep 1
-screen -S http-random -X stuff "http-random -b 127.0.0.1:7777 -i ${subIPv6}/${CIDR}$(printf '\r')";
+screen -S http-random -X stuff "while true;timelimit -t2 do http-random -b 127.0.0.1:7777 -i ${subIPv6}/${CIDR}$(printf '\r');done";
 mkdir ${HOME}/sbconf
 curl https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o ${HOME}/sbconf/geoip.db -L
 touch ${HOME}/sbconf/config.json
